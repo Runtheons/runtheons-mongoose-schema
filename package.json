@@ -1,0 +1,12 @@
+{
+	"name": "@runtheons/mongoose-schema",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {},
+	"author": "Zexal0807",
+	"license": "ISC",
+	"description": "",
+	"dependencies": {
+		"mongoose": "^8.0.4"
+	}
+}
