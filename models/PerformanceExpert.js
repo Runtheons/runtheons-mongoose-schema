@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
+const Enum = require("./enum");
+
 const IncapsultedAthlete = new Schema({
 	_id: Schema.Types.ObjectId,
 	name: {
@@ -13,17 +15,18 @@ const IncapsultedAthlete = new Schema({
 	},
 	status: {
 		type: String,
-		enum: ["ONBOARDING", "PLANNING", "ACCELLERATE", "KO"],
+		enum: Enum.ATHLETE_STATUS,
 		uppercase: true,
 		required: true,
-		default: "ONBOARDING"
+		default: Enum.ATHLETE_STATUS_DEFAULT
 	},
 	relativeRoles: {
 		type: [String],
 		uppercase: true,
-		enum: ["HEAD_OF_PERFORMANCE"]
+		enum: Enum.PERFORMANCE_EXPERT_ROLES
 	},
 	photo: String,
+	speciality: String
 });
 
 const PerformanceExpertSchema = new Schema({
@@ -39,9 +42,9 @@ const PerformanceExpertSchema = new Schema({
 	title: String,
 	type: {
 		type: String,
-		enum: ["PERFORMANCE_EXPERT", "PERFORMANCE_EXPERT"],
+		enum: Enum.USER_TYPE,
 		uppercase: true,
-		default: "PERFORMANCE_EXPERT",
+		default: Enum.USER_PERFORMANCE_EXPERT,
 		immutable: true
 	},
 	athletes: {
