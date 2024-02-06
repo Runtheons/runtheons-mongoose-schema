@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
 
-module.exports = async(config) => {
+module.exports = async(connectionstring, options = null) => {
 
-	mongoose.connect(config);
+	mongoose.connect(connectionstring, options);
 
-	const Athlete = require("./models/Athlete")
-	const PerformanceExpert = require("./models/PerformanceExpert")
+	const Athlete = require("./models/Athlete")(mongoose)
+	const PerformanceExpert = require("./models/PerformanceExpert")(mongoose)
 
 	return {
 		mongoose,
