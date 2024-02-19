@@ -21,11 +21,6 @@ module.exports = (mongoose) => {
 			required: true,
 			default: Enum.ATHLETE_STATUS_DEFAULT
 		},
-		relativeRoles: {
-			type: [String],
-			uppercase: true,
-			enum: Enum.PERFORMANCE_EXPERT_ROLES
-		},
 		photo: String,
 		speciality: String
 	});

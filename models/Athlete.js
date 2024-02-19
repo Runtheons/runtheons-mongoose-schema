@@ -17,11 +17,6 @@ module.exports = (mongoose) => {
 			type: String,
 			required: true
 		},
-		roles: {
-			type: [String],
-			uppercase: true,
-			enum: Enum.PERFORMANCE_EXPERT_ROLES
-		},
 		photo: String,
 	});
 
