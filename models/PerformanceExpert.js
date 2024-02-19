@@ -3,7 +3,6 @@ module.exports = (mongoose) => {
 
 	const Enum = require("./enum");
 
-
 	const IncapsultedAthlete = new Schema({
 		_id: Schema.Types.ObjectId,
 		name: {
