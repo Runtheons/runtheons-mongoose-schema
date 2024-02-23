@@ -3,7 +3,7 @@ module.exports = (mongoose) => {
 
 	const Enum = require("./enum");
 
-	const IncapsultedPerformanceExpert = new Schema({
+	const IncapsultedPerformanceExpertSchema = new Schema({
 		_id: Schema.Types.ObjectId,
 		name: {
 			type: String,
@@ -45,7 +45,7 @@ module.exports = (mongoose) => {
 			immutable: true
 		},
 		performanceExperts: {
-			type: [IncapsultedPerformanceExpert],
+			type: [IncapsultedPerformanceExpertSchema],
 			required: false
 		},
 	}, { versionKey: false });

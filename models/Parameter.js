@@ -3,7 +3,7 @@ module.exports = (mongoose) => {
 
 	const Enum = require("./enum");
 
-	const IncapsultedAthlete = new Schema({
+	const IncapsultedAthleteSchema = new Schema({
 		_id: Schema.Types.ObjectId,
 		name: {
 			type: String,
@@ -17,9 +17,9 @@ module.exports = (mongoose) => {
 		speciality: String
 	});
 
-	const IncapsultedValue = new Schema({});
+	const IncapsultedValueSchema = new Schema({});
 
-	const IncapsultedSourceAthlete = new Schema({});
+	const IncapsultedSourceSchema = new Schema({});
 
 	const ParameterSchema = new Schema({
 		parameter: {
@@ -30,9 +30,9 @@ module.exports = (mongoose) => {
 		date: {
 			type: Date
 		},
-		athlete: IncapsultedAthlete,
-		source: IncapsultedSourceAthlete,
-		value: IncapsultedValue
+		athlete: IncapsultedAthleteSchema,
+		source: IncapsultedSourceSchema,
+		value: IncapsultedValueSchema
 	}, { versionKey: false });
 
 	const model = mongoose.model('Parameter', ParameterSchema, 'parameters');
