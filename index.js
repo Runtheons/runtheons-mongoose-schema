@@ -8,13 +8,13 @@ module.exports = async(connectionstring, options = null) => {
 	const User = require("./models/User")(mongoose)
 	const Athlete = require("./models/Athlete")(mongoose)
 	const PerformanceExpert = require("./models/PerformanceExpert")(mongoose)
-	const PerformanceView = require("./models/PerformanceView")(mongoose)
+	const PreferencesView = require("./models/PreferencesView")(mongoose)
 
 	return {
 		mongoose,
 		User,
 		Athlete,
 		PerformanceExpert,
-		PerformanceView
+		PreferencesView
 	}
 }
