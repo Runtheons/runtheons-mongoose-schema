@@ -3,19 +3,7 @@ module.exports = (mongoose) => {
 
 	const Enum = require("./enum");
 
-	const IncapsultedAthleteSchema = new Schema({
-		_id: Schema.Types.ObjectId,
-		name: {
-			type: String,
-			required: true
-		},
-		surname: {
-			type: String,
-			required: true
-		},
-		photo: String,
-		speciality: String
-	});
+	const IncapsultedAthleteSchema = require("./incapsulated/IncapsultedAthlete");
 
 	const IncapsultedValueSchema = new Schema({});
 
