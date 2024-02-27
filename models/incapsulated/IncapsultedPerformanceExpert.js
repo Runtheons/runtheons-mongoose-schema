@@ -2,6 +2,7 @@ const Enum = require("./../enum");
 
 module.exports = (mongoose) => {
 	const { Schema } = mongoose;
+
 	return new Schema({
 		_id: Schema.Types.ObjectId,
 		name: {

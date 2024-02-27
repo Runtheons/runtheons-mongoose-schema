@@ -1,7 +1,7 @@
+const Enum = require("./enum");
+
 module.exports = (mongoose) => {
 	const { Schema } = mongoose;
-
-	const Enum = require("./enum");
 
 	const IncapsultedAthleteSchema = require("./incapsulated/IncapsultedAthlete")(mongoose);
 
