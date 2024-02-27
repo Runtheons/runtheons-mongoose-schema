@@ -1,19 +1,17 @@
-const Enum = require("./../enum");
+const { Schema } = require('mongoose');
 
-module.exports = (mongoose) => {
-	const { Schema } = mongoose;
+const IncapsultedAthleteSchema = new Schema({
+	_id: Schema.Types.ObjectId,
+	name: {
+		type: String,
+		required: true
+	},
+	surname: {
+		type: String,
+		required: true
+	},
+	photo: String,
+	speciality: String
+});
 
-	return new Schema({
-		_id: Schema.Types.ObjectId,
-		name: {
-			type: String,
-			required: true
-		},
-		surname: {
-			type: String,
-			required: true
-		},
-		photo: String,
-		speciality: String
-	});
-}
+module.exports = IncapsultedAthleteSchema;

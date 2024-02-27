@@ -1,17 +1,14 @@
-module.exports = (mongoose) => {
-	const { Schema } = mongoose;
+const { Schema } = require('mongoose');
 
-	const IncapsultedPreferencesSchema = new Schema({
+const IncapsultedPreferencesSchema = new Schema({});
 
-	});
+const PreferencesViewSchema = new Schema({
+	athlete: Schema.Types.ObjectId,
+	performanceExpert: Schema.Types.ObjectId,
+	preferences: IncapsultedPreferencesSchema
+}, { versionKey: false });
 
-	const PreferencesViewSchema = new Schema({
-		athlete: Schema.Types.ObjectId,
-		performanceExpert: Schema.Types.ObjectId,
-		preferences: IncapsultedPreferencesSchema
-	}, { versionKey: false });
+const model = mongoose.model('PreferencesView', PreferencesViewSchema, 'preferencesView');
 
-	const model = mongoose.model('PreferencesView', PreferencesViewSchema, 'preferencesView');
 
-	return model;
-}
+module.exports = model;
