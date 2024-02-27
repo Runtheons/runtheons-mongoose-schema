@@ -3,7 +3,7 @@ module.exports = (mongoose) => {
 
 	const Enum = require("./enum");
 
-	const IncapsultedPerformanceExpertSchema = require("./incapsulated/IncapsultedPerformanceExpert");
+	const IncapsultedPerformanceExpertSchema = require("./incapsulated/IncapsultedPerformanceExpert")(mongoose);
 
 	const AthleteSchema = new Schema({
 		name: {
