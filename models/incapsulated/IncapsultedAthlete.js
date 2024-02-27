@@ -1,4 +1,5 @@
-const { Schema } = require('mongoose');
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
 const IncapsultedAthleteSchema = new Schema({
 	_id: Schema.Types.ObjectId,
