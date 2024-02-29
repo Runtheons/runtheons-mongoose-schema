@@ -40,10 +40,10 @@ PerformanceExpertSchema.methods.removeAthelte = (athelte) => {
 const model = mongoose.model('PerformanceExpert', PerformanceExpertSchema, 'users');
 
 const f = model.find;
-model.find = (filter = {}, projection, options) => f.apply(model, [{...filter, type: "PERFORMANCE_EXPERT" }, projection, options]);
+model.find = (filter = {}, projection, options) => f.apply(model, [{...filter, type: "PERFORMANCE_EXPERT" }, {...projection, email: 0, password: 0 }, options]);
 
 const fo = model.findOne;
-model.findOne = (filter = {}, projection, options) => fo.apply(model, [{...filter, type: "PERFORMANCE_EXPERT" }, projection, options]);
+model.findOne = (filter = {}, projection, options) => fo.apply(model, [{...filter, type: "PERFORMANCE_EXPERT" }, {...projection, email: 0, password: 0 }, options]);
 
 const fod = model.findOneAndDelete;
 model.findOneAndDelete = (filter = {}, options) => fod.apply(model, [{...filter, type: "PERFORMANCE_EXPERT" }, options]);

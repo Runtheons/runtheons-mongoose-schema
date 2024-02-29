@@ -47,10 +47,10 @@ AthleteSchema.methods.removePerformanceExpert = (performanceExpert) => {
 const model = mongoose.model('Athlete', AthleteSchema, 'users');
 
 const f = model.find;
-model.find = (filter = {}, projection, options) => f.apply(model, [{...filter, type: "ATHLETE" }, projection, options]);
+model.find = (filter = {}, projection, options) => f.apply(model, [{...filter, type: "ATHLETE" }, {...projection, email: 0, password: 0 }, options]);
 
 const fo = model.findOne;
-model.findOne = (filter = {}, projection, options) => fo.apply(model, [{...filter, type: "ATHLETE" }, projection, options]);
+model.findOne = (filter = {}, projection, options) => fo.apply(model, [{...filter, type: "ATHLETE" }, {...projection, email: 0, password: 0 }, options]);
 
 const fod = model.findOneAndDelete;
 model.findOneAndDelete = (filter = {}, options) => fod.apply(model, [{...filter, type: "ATHLETE" }, options]);
