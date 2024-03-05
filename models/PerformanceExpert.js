@@ -40,18 +40,37 @@ PerformanceExpertSchema.methods.removeAthelte = (athelte) => {
 const model = mongoose.model('PerformanceExpert', PerformanceExpertSchema, 'users');
 
 const f = model.find;
-model.find = (filter = {}, projection, options) => f.apply(model, [{...filter, type: "PERFORMANCE_EXPERT" }, {...projection, email: 0, password: 0 }, options]);
+model.find = (filter = {}, projection, options) => f.apply(model, [
+	{...filter, type: "PERFORMANCE_EXPERT" },
+	{...projection, email: 0, password: 0 },
+	options
+]);
 
 const fo = model.findOne;
-model.findOne = (filter = {}, projection, options) => fo.apply(model, [{...filter, type: "PERFORMANCE_EXPERT" }, {...projection, email: 0, password: 0 }, options]);
+model.findOne = (filter = {}, projection, options) => fo.apply(model, [
+	{...filter, type: "PERFORMANCE_EXPERT" },
+	{...projection, email: 0, password: 0 },
+	options
+]);
 
 const fod = model.findOneAndDelete;
-model.findOneAndDelete = (filter = {}, options) => fod.apply(model, [{...filter, type: "PERFORMANCE_EXPERT" }, options]);
+model.findOneAndDelete = (filter = {}, options) => fod.apply(model, [
+	{...filter, type: "PERFORMANCE_EXPERT" },
+	options
+]);
 
 const fore = model.findOneAndReplace;
-model.findOneAndReplace = (filter = {}, replacement, options) => fore.apply(model, [{...filter, type: "PERFORMANCE_EXPERT" }, replacement, options]);
+model.findOneAndReplace = (filter = {}, replacement, options) => fore.apply(model, [
+	{...filter, type: "PERFORMANCE_EXPERT" },
+	replacement,
+	options
+]);
 
 const fou = model.findOneAndUpdate;
-model.findOneAndUpdate = (filter = {}, update, options) => fou.apply(model, [{...filter, type: "PERFORMANCE_EXPERT" }, update, options]);
+model.findOneAndUpdate = (filter = {}, update, options) => fou.apply(model, [
+	{...filter, type: "PERFORMANCE_EXPERT" },
+	update,
+	options
+]);
 
 module.exports = model;

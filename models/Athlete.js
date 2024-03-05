@@ -47,18 +47,37 @@ AthleteSchema.methods.removePerformanceExpert = (performanceExpert) => {
 const model = mongoose.model('Athlete', AthleteSchema, 'users');
 
 const f = model.find;
-model.find = (filter = {}, projection, options) => f.apply(model, [{...filter, type: "ATHLETE" }, {...projection, email: 0, password: 0 }, options]);
+model.find = (filter = {}, projection, options) => f.apply(model, [
+	{...filter, type: "ATHLETE" },
+	{...projection, email: 0, password: 0 },
+	options
+]);
 
 const fo = model.findOne;
-model.findOne = (filter = {}, projection, options) => fo.apply(model, [{...filter, type: "ATHLETE" }, {...projection, email: 0, password: 0 }, options]);
+model.findOne = (filter = {}, projection, options) => fo.apply(model, [
+	{...filter, type: "ATHLETE" },
+	{...projection, email: 0, password: 0 },
+	options
+]);
 
 const fod = model.findOneAndDelete;
-model.findOneAndDelete = (filter = {}, options) => fod.apply(model, [{...filter, type: "ATHLETE" }, options]);
+model.findOneAndDelete = (filter = {}, options) => fod.apply(model, [
+	{...filter, type: "ATHLETE" },
+	options
+]);
 
 const fore = model.findOneAndReplace;
-model.findOneAndReplace = (filter = {}, replacement, options) => fore.apply(model, [{...filter, type: "ATHLETE" }, replacement, options]);
+model.findOneAndReplace = (filter = {}, replacement, options) => fore.apply(model, [
+	{...filter, type: "ATHLETE" },
+	replacement,
+	options
+]);
 
 const fou = model.findOneAndUpdate;
-model.findOneAndUpdate = (filter = {}, update, options) => fou.apply(model, [{...filter, type: "ATHLETE" }, update, options]);
+model.findOneAndUpdate = (filter = {}, update, options) => fou.apply(model, [
+	{...filter, type: "ATHLETE" },
+	update,
+	options
+]);
 
 module.exports = model;
