@@ -29,12 +29,19 @@ const PerformanceExpertSchema = new Schema({
 	},
 }, { versionKey: false });
 
-PerformanceExpertSchema.methods.addAthelte = (athelte) => {
-
+PerformanceExpertSchema.methods.hasAthlete = (_id) => {
+	return this.athletes.filter(x => x._id == _id).length > 0 || null;
 }
 
-PerformanceExpertSchema.methods.removeAthelte = (athelte) => {
+PerformanceExpertSchema.methods.addAthelte = (athelte) => {
+	if (!this.hasAthlete(athelte))
+		return false
+	let { _id, name, surname, photo, speciality, status } = athelte
+	this.athletes.push({ _id, name, surname, photo, speciality, status });
+}
 
+PerformanceExpertSchema.methods.removeAthelte = (_id) => {
+	this.athletes = this.athletes.filter(x => x._id != _id);
 }
 
 const model = mongoose.model('PerformanceExpert', PerformanceExpertSchema, 'users');
