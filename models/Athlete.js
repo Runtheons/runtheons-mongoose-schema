@@ -14,7 +14,10 @@ const AthleteSchema = new Schema({
 		type: String,
 		required: true
 	},
-	photo: String,
+	photo: {
+		type: String,
+		default: ""
+	},
 	speciality: String,
 	status: {
 		type: String,
@@ -36,19 +39,23 @@ const AthleteSchema = new Schema({
 }, { versionKey: false });
 
 
-AthleteSchema.methods.hasPerformanceExpert = (_id) => {
-	return this.athletes.filter(x => x._id == _id).length > 0 || null;
+AthleteSchema.methods.hasPerformanceExpert = function(_id) {
+	return this.performanceExperts.filter(x => x._id.equals(_id)).length > 0 || null;
 }
 
-AthleteSchema.methods.addPerformanceExpert = (performanceExpert) => {
-	if (!this.hasPerformanceExpert(athelte))
+AthleteSchema.methods.addPerformanceExpert = async function(performanceExpert) {
+	if (this.hasPerformanceExpert(performanceExpert._id))
 		return false
 	let { _id, name, surname, photo, title } = performanceExpert
-	this.athletes.push({ _id, name, surname, photo, title });
+	this.performanceExperts.push({ _id, name, surname, photo, title });
+	await this.save();
 }
 
-AthleteSchema.methods.removePerformanceExpert = (_id) => {
-	this.athletes = this.athletes.filter(x => x._id != _id);
+AthleteSchema.methods.removePerformanceExpert = async function(_id) {
+	if (!this.hasPerformanceExpert(_id))
+		return false
+	this.performanceExperts.pull({ _id });
+	await this.save();
 }
 
 const model = mongoose.model('Athlete', AthleteSchema, 'users');
