@@ -29,20 +29,22 @@ const PerformanceExpertSchema = new Schema({
 	},
 }, { versionKey: false });
 
-PerformanceExpertSchema.methods.hasAthlete = (_id) => {
-	return this.athletes.filter(x => x._id == _id).length > 0 || null;
+PerformanceExpertSchema.methods.hasAthlete = function(_id) {
+	return this.athletes.filter(x => x._id.equals(_id)).length > 0 || null;
 }
 
-PerformanceExpertSchema.methods.addAthelte = async(athelte) => {
-	if (!this.hasAthlete(athelte))
+PerformanceExpertSchema.methods.addAthlete = async function(athlete) {
+	if (this.hasAthlete(athlete._id))
 		return false
-	let { _id, name, surname, photo, speciality, status } = athelte
+	let { _id, name, surname, photo, speciality, status } = athlete
 	this.athletes.push({ _id, name, surname, photo, speciality, status });
 	await this.save();
 }
 
-PerformanceExpertSchema.methods.removeAthelte = async(_id) => {
-	this.athletes = this.athletes.filter(x => x._id != _id);
+PerformanceExpertSchema.methods.removeAthlete = async function(_id) {
+	if (!this.hasAthlete(_id))
+		return false
+	this.athletes.pull({ _id });
 	await this.save();
 }
 
