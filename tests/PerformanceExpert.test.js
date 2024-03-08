@@ -84,11 +84,50 @@ describe("PERFORMANCE EXPERT", () => {
 		await i.save();
 
 		let a = await PerformanceExpert.findById("65967cc93d7a535b779e31d3")
-		a.name = "Pippo";
-		await a.save();
+		await a.setName("Pippo");
 
-		let b = await PerformanceExpert.findOne();
+		let b = await PerformanceExpert.findById("65967cc93d7a535b779e31d3");
 		expect(b.name).toEqual("Pippo");
+	});
+
+	test("U - Update name of and PerformanceExpert (check collateral)", async() => {
+		const { Athlete, PerformanceExpert } = database;
+		let ia = new Athlete(testData.ATHLETE1);
+		await ia.save();
+		let ip = new PerformanceExpert(testData.PERFORMANCE_EXPERT1);
+		await ip.save();
+
+		let a = await PerformanceExpert.findById("65967cc93d7a535b779e31d3")
+		await a.setName("Pippo");
+
+		let b = await Athlete.findById("65967c7a3d7a535b779e31d0")
+		expect(b.performanceExperts[0].name).toEqual("Pippo");
+	});
+
+	test("U - Update surname of and PerformanceExpert", async() => {
+		const { PerformanceExpert } = database;
+		let i = new PerformanceExpert(testData.PERFORMANCE_EXPERT1);
+		await i.save();
+
+		let a = await PerformanceExpert.findById("65967cc93d7a535b779e31d3")
+		await a.setSurname("Pippo");
+
+		let b = await PerformanceExpert.findById("65967cc93d7a535b779e31d3");
+		expect(b.surname).toEqual("Pippo");
+	});
+
+	test("U - Update surname of and PerformanceExpert (check collateral)", async() => {
+		const { Athlete, PerformanceExpert } = database;
+		let ia = new Athlete(testData.ATHLETE1);
+		await ia.save();
+		let ip = new PerformanceExpert(testData.PERFORMANCE_EXPERT1);
+		await ip.save();
+
+		let a = await PerformanceExpert.findById("65967cc93d7a535b779e31d3")
+		await a.setSurname("Pippo");
+
+		let b = await Athlete.findById("65967c7a3d7a535b779e31d0")
+		expect(b.performanceExperts[0].surname).toEqual("Pippo");
 	});
 
 	test("U - Have performance expert ", async() => {

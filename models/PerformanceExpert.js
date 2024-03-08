@@ -48,6 +48,31 @@ PerformanceExpertSchema.methods.removeAthlete = async function(_id) {
 	await this.save();
 }
 
+PerformanceExpertSchema.methods.setName = async function(newName) {
+	this.name = newName;
+	await this.save();
+
+	const { Athlete } = mongoose.models;
+
+	await Athlete.updateMany({ 'performanceExperts._id': this._id }, {
+		'$set': {
+			'performanceExperts.$.name': newName
+		}
+	});
+}
+PerformanceExpertSchema.methods.setSurname = async function(newSurname) {
+	this.surname = newSurname;
+	await this.save();
+
+	const { Athlete } = mongoose.models;
+
+	await Athlete.updateMany({ 'performanceExperts._id': this._id }, {
+		'$set': {
+			'performanceExperts.$.surname': newSurname
+		}
+	});
+}
+
 const model = mongoose.model('PerformanceExpert', PerformanceExpertSchema, 'users');
 
 const f = model.find;

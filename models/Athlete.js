@@ -38,7 +38,6 @@ const AthleteSchema = new Schema({
 	},
 }, { versionKey: false });
 
-
 AthleteSchema.methods.hasPerformanceExpert = function(_id) {
 	return this.performanceExperts.filter(x => x._id.equals(_id)).length > 0 || null;
 }
@@ -56,6 +55,31 @@ AthleteSchema.methods.removePerformanceExpert = async function(_id) {
 		return false
 	this.performanceExperts.pull({ _id });
 	await this.save();
+}
+
+AthleteSchema.methods.setName = async function(newName) {
+	this.name = newName;
+	await this.save();
+
+	const { PerformanceExpert } = mongoose.models;
+
+	await PerformanceExpert.updateMany({ 'athletes._id': this._id }, {
+		'$set': {
+			'athletes.$.name': newName
+		}
+	});
+}
+AthleteSchema.methods.setSurname = async function(newSurname) {
+	this.surname = newSurname;
+	await this.save();
+
+	const { PerformanceExpert } = mongoose.models;
+
+	await PerformanceExpert.updateMany({ 'athletes._id': this._id }, {
+		'$set': {
+			'athletes.$.surname': newSurname
+		}
+	});
 }
 
 const model = mongoose.model('Athlete', AthleteSchema, 'users');
