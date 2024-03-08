@@ -12,15 +12,6 @@ const UserSchema = new Schema({
 		type: String,
 		required: true
 	},
-	name: {
-		type: String,
-		required: true
-	},
-	surname: {
-		type: String,
-		required: true
-	},
-	photo: String,
 	type: {
 		type: String,
 		enum: Enum.USER_TYPE,
@@ -34,14 +25,14 @@ const model = mongoose.model('User', UserSchema, 'users');
 const f = model.find;
 model.find = (filter = {}, projection, options) => f.apply(model, [
 	filter,
-	{...projection, performanceExperts: 0, athletes: 0, status: 0 },
+	{ performanceExperts: 0, athletes: 0, status: 0, ...projection },
 	options
 ]);
 
 const fo = model.findOne;
 model.findOne = (filter = {}, projection, options) => fo.apply(model, [
 	filter,
-	{...projection, performanceExperts: 0, athletes: 0, status: 0 },
+	{ performanceExperts: 0, athletes: 0, status: 0, ...projection },
 	options
 ]);
 
@@ -60,7 +51,7 @@ model.findOneAndReplace = (filter = {}, replacement, options) => fore.apply(mode
 
 const fou = model.findOneAndUpdate;
 model.findOneAndUpdate = (filter = {}, update, options) => fou.apply(model, [
-	{...filter, type: "ATHLETE" },
+	filter,
 	update,
 	options
 ]);
