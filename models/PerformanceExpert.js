@@ -72,6 +72,18 @@ PerformanceExpertSchema.methods.setSurname = async function(newSurname) {
 		}
 	});
 }
+PerformanceExpertSchema.methods.setSurname = async function(newPhoto) {
+	this.photo = newPhoto;
+	await this.save();
+
+	const { Athlete } = mongoose.models;
+
+	await Athlete.updateMany({ 'performanceExperts._id': this._id }, {
+		'$set': {
+			'performanceExperts.$.photo': newPhoto
+		}
+	});
+}
 
 const model = mongoose.model('PerformanceExpert', PerformanceExpertSchema, 'users');
 

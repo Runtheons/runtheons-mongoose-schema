@@ -81,6 +81,18 @@ AthleteSchema.methods.setSurname = async function(newSurname) {
 		}
 	});
 }
+AthleteSchema.methods.setPhoto = async function(newPhoto) {
+	this.photo = newPhoto;
+	await this.save();
+
+	const { PerformanceExpert } = mongoose.models;
+
+	await PerformanceExpert.updateMany({ 'athletes._id': this._id }, {
+		'$set': {
+			'athletes.$.photo': newPhoto
+		}
+	});
+}
 
 const model = mongoose.model('Athlete', AthleteSchema, 'users');
 
