@@ -72,7 +72,7 @@ PerformanceExpertSchema.methods.setSurname = async function(newSurname) {
 		}
 	});
 }
-PerformanceExpertSchema.methods.setSurname = async function(newPhoto) {
+PerformanceExpertSchema.methods.setPhoto = async function(newPhoto) {
 	this.photo = newPhoto;
 	await this.save();
 
