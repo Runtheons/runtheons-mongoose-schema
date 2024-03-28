@@ -9,6 +9,10 @@ const FileSchema = new Schema({
 		type: String,
 		required: true
 	},
+	filepath: {
+		type: String,
+		required: true
+	},
 	extension: {
 		type: String,
 		required: true
