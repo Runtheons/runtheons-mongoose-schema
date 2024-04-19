@@ -9,6 +9,7 @@ module.exports = async(connectionstring, options = null) => {
 	const PerformanceExpert = require("./models/PerformanceExpert")
 	const PreferencesView = require("./models/PreferencesView")
 	const File = require("./models/File")
+	const Parameter = require("./models/Parameter")
 
 	return {
 		mongoose,
@@ -16,6 +17,7 @@ module.exports = async(connectionstring, options = null) => {
 		Athlete,
 		PerformanceExpert,
 		PreferencesView,
-		File
+		File,
+		Parameter
 	}
 }
