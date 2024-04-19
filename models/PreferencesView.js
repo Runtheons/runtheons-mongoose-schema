@@ -12,11 +12,11 @@ const IncapsultedItemSchema = new Schema({
 	},
 	content: {
 		title: String,
-		parameter: {
-			type: String,
-			// enum: Enum.PARAMETERS,
-			// lowercase: true
-		},
+		// parameter: {
+		// 	type: String,
+		// 	// enum: Enum.PARAMETERS,
+		// 	// lowercase: true
+		// },
 		component: {
 			// name: "Grapth1",
 			// parameteter: {
