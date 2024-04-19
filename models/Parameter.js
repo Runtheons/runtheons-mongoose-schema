@@ -10,7 +10,7 @@ const ParameterSchema = new Schema({
 	parameter: {
 		type: String,
 		required: true,
-		enum: Enum.PARAMETERS
+		// enum: Enum.PARAMETERS
 	},
 	date: {
 		type: Date
