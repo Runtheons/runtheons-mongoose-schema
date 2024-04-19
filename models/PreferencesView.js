@@ -35,7 +35,7 @@ const IncapsultedPreferencesSchema = new Schema({
 
 const PreferencesViewSchema = new Schema({
 	athlete: Schema.Types.ObjectId,
-	performanceExpert: Schema.Types.ObjectId,
+	user: Schema.Types.ObjectId,
 	preferences: IncapsultedPreferencesSchema
 }, { versionKey: false });
 
