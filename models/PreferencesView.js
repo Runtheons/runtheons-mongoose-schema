@@ -14,8 +14,8 @@ const IncapsultedItemSchema = new Schema({
 		title: String,
 		parameter: {
 			type: String,
-			enum: Enum.PARAMETERS,
-			lowercase: true
+			// enum: Enum.PARAMETERS,
+			// lowercase: true
 		},
 		component: {
 			// name: "Grapth1",
