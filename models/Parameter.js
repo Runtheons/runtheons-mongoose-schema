@@ -3,7 +3,6 @@ const { Schema } = mongoose;
 
 const Enum = require("./enum");
 
-const IncapsultedAthleteSchema = require("./incapsulated/IncapsultedAthlete");
 const IncapsultedValueSchema = new Schema({});
 const IncapsultedSourceSchema = new Schema({});
 
@@ -16,7 +15,7 @@ const ParameterSchema = new Schema({
 	date: {
 		type: Date
 	},
-	athlete: IncapsultedAthleteSchema,
+	athlete: Schema.Types.ObjectId,
 	source: IncapsultedSourceSchema,
 	value: IncapsultedValueSchema
 }, { versionKey: false });
